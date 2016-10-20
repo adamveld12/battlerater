@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { actions } from './appstate.js';
 import VehicleSelector from './VehicleSelector.js';
+import VehicleInfoDisplay from './VehicleInfoDisplay.js';
+
+import './LineupEditor.css';
 
 export default class LineupEditor extends Component {
   removeSlot(idx){
@@ -19,14 +22,15 @@ export default class LineupEditor extends Component {
     const { country, vehicleType, vehicleSlots, dispatcher } = this.props;
 
     return (
-      <div>
-        { vehicleSlots.length <= 6 ? (<li key={-1}>
-            <button onClick={this.addSlot.bind(this)} >Add Slot</button>
-            </li>) : (<br/>) }
+      <div className="Lineup">
+        { vehicleSlots.length <= 6 ? (<button onClick={this.addSlot.bind(this)} >Add Slot</button>) : (<br/>) }
         <ul>
           {
             vehicleSlots.map((slot, idx) => (
-              <li key={idx + slot.vehicleInfo.name} >
+              <li key={idx + slot.vehicleInfo.name} className={slot.vehicleInfo.premium ? 'premium_tank' : ''}>
+                <VehicleInfoDisplay info={slot.vehicleInfo}
+                                    vehicleType={vehicleType}
+                                    country={country} />
                 <VehicleSelector dispatcher={dispatcher}
                                  vehicleType={vehicleType}
                                  country={country}

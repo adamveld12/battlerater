@@ -27,13 +27,22 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </div>
 
-        <GameModeSelector dispatcher={dispatcher} mode={gameMode} />
-        <CountrySelector dispatcher={dispatcher} country={country} />
-        <VehicleTypeSelector dispatcher={dispatcher} vehicleType={vehicleType} />
+        <GameModeSelector dispatcher={dispatcher}
+                          mode={gameMode} />
+        <CountrySelector dispatcher={dispatcher}
+                         country={country} />
+        <VehicleTypeSelector dispatcher={dispatcher}
+                             vehicleType={vehicleType} />
 
-        <BattleRatingCalculator vehicleType={vehicleType} country={country} mode={gameMode} />
+        <BattleRatingCalculator vehicleSlots={vehicleSlots}
+                                vehicleType={vehicleType}
+                                country={country}
+                                gameMode={gameMode} />
 
-        <LineupEditor dispatcher={dispatcher} country={country} vehicleType={vehicleType} vehicleSlots={vehicleSlots} />
+        <LineupEditor dispatcher={dispatcher}
+                      country={country}
+                      vehicleType={vehicleType}
+                      vehicleSlots={vehicleSlots} />
       </div>
     );
   }

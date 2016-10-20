@@ -9,7 +9,7 @@ export default class VehicleSelector extends Component {
     const { dispatcher, country, vehicleType, idx } = this.props;
 
     const vehicleInfo = vehicles[country][vehicleType][value];
-    const action = actions.setVehicleSlot(vehicleInfo, idx, idx);
+    const action = actions.setVehicleSlot(vehicleInfo, value, idx);
     dispatcher(action);
   }
 
@@ -18,7 +18,7 @@ export default class VehicleSelector extends Component {
 
     return (
       <select defaultValue={ selectedVehicleIdx || 0 } onChange={this.handleChange.bind(this)}>
-        { 
+        {
           vehicles[country][vehicleType].map((x, vehicleIdx) =>
             (<option key={vehicleIdx} value={vehicleIdx} >{x.name}</option>)
           )

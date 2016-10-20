@@ -40,7 +40,7 @@ const changeCountry = (state, action) => {
   if (name === 'CHANGE_COUNTRY') {
       newState.country = country;
       newState.vehicleSlots = state.vehicleSlots.map(
-        (slot) => ({ vehicleInfo: vehicles[country][vehicleType][slot.idx], vehicleIdx: slot.vehicleIdx })
+        (slot) => ({ vehicleInfo: vehicles[country][vehicleType][0], vehicleIdx: 0 })
       );
   }
 
@@ -58,18 +58,16 @@ const changeVehicleSlot = (state, action) => {
   } else if (name === 'REMOVE_VEHICLE_SLOT') {
     const { idx } = action;
 
-    if (!idx){
+    if (!idx) {
       newState.vehicleSlots.pop();
     } else {
-      console.log(idx);
       newState.vehicleSlots.splice(idx, 1);
-      console.log(newState.vehicleSlots);
     }
 
   } else if (name === 'SET_VEHICLE_SLOT') {
     const { vehicleIdx, vehicleInfo, idx } = action;
 
-    console.log("setting", idx, "to", vehicleInfo);
+    console.log("setting", idx, "to", vehicleInfo, vehicleIdx);
     vehicleSlots[idx] = { vehicleInfo, vehicleIdx };
   }
 

@@ -1,8 +1,7 @@
 import { actions, reducers, initialState } from './appstate.js';
 import MiniRedux from './miniredux.js'
 
-console.log(reducers);
-const stateContainer = new MiniRedux(initialState, reducers, { debug: true });
+const stateContainer = new MiniRedux(initialState, reducers, { debug: false });
 
 it('has correct initial app state', async () => {
   expect(stateContainer.dump()).toEqual(initialState);
