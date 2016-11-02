@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { actions } from './appstate.js';
-import VehicleSelector from './VehicleSelector.js';
-import VehicleInfoDisplay from './VehicleInfoDisplay.js';
+import { actions } from './AppState.js';
+import VehicleCard from './VehicleCard.js';
+import BattleRatingCalculator from './BattleRatingCalculator.js';
+
+import { FlatButton } from 'material-ui';
 
 import './LineupEditor.css';
 
@@ -9,34 +11,38 @@ export default class LineupEditor extends Component {
   removeSlot(idx){
     const { dispatcher } = this.props;
     const { removeVehicleSlot } = actions;
-    console.log("removing", idx, "(", this.props.vehicleSlots[idx],")");
     dispatcher(removeVehicleSlot(idx));
   }
-  addSlot(){
+
+  addCrew(){
     const { dispatcher } = this.props;
     const { addVehicleSlot } = actions;
     dispatcher(addVehicleSlot());
   }
 
   render(){
-    const { country, vehicleType, vehicleSlots, dispatcher } = this.props;
+    const { country, gameMode, vehicleType, vehicleSlots, dispatcher } = this.props;
 
     return (
       <div className="Lineup">
-        { vehicleSlots.length <= 6 ? (<button onClick={this.addSlot.bind(this)} >Add Slot</button>) : (<br/>) }
+        <FlatButton label="Add Crew"
+                    disabled={vehicleSlots.length === 6}
+                    onClick={this.addCrew.bind(this)} />
+
+        <BattleRatingCalculator vehicleSlots={vehicleSlots}
+                                vehicleType={vehicleType}
+                                country={country}
+                                gameMode={gameMode} />
+
         <ul>
           {
             vehicleSlots.map((slot, idx) => (
               <li key={idx + slot.vehicleInfo.name} className={slot.vehicleInfo.premium ? 'premium_tank' : ''}>
-                <VehicleInfoDisplay info={slot.vehicleInfo}
-                                    vehicleType={vehicleType}
-                                    country={country} />
-                <VehicleSelector dispatcher={dispatcher}
-                                 vehicleType={vehicleType}
-                                 country={country}
-                                 idx={idx}
-                                 selectedVehicleIdx={ (slot.vehicleIdx || 0) } />
-                <button onClick={() => this.removeSlot(idx)}>Remove</button>
+                <VehicleCard vehicleSlot={slot}
+                             vehicleType={vehicleType}
+                             idx={idx}
+                             dispatcher={dispatcher}
+                             country={country} />
               </li>
             ))
           }

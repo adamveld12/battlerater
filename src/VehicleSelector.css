@@ -1,0 +1,11 @@
+.VehicleSelector {
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 10px;
+   overflow: hidden;
+   padding: 2px 5px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   min-width: 100px;
+}

@@ -1,4 +1,4 @@
-import { actions, reducers, initialState } from './appstate.js';
+import { actions, reducers, initialState } from './AppState.js';
 import MiniRedux from './miniredux.js'
 
 const stateContainer = new MiniRedux(initialState, reducers, { debug: false });

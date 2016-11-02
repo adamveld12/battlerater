@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { actions } from './appstate.js';
+import { actions } from './AppState.js';
 
-const countries = ["USA", "Germany", "USSR", "Britain", "Japan"];
+const countries = ["USA", "Germany",/* "USSR", "Britain", "Japan"*/];
 
 export default class VehicleSelector extends Component {
   handleChange({ target: { value } }){

@@ -1,3 +1,7 @@
+.Lineup {
+  padding: 15px 5px;
+}
+
 .Lineup ul {
   list-style-type: none;
   margin: 0;
@@ -6,19 +10,4 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.Lineup ul li {
-  margin: 5px 20px;
-  padding: 5px;
-  box-shadow: 0 0 7px  #888;
-  height: 250px;
-  width: 260px;
-  border-radius: 5px 10px;
-}
-
-.Lineup ul li.premium_tank {
-  border-width: 2px;
-  border-color: #baba06;
-  border-style: dashed;
 }

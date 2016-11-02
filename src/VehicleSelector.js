@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { actions } from './appstate.js';
+import { MenuItem, SelectField } from 'material-ui';
+import { actions } from './AppState.js';
 
+import './VehicleSelector.css';
 import vehicles from './vehicles';
 
 
 export default class VehicleSelector extends Component {
-  handleChange({ target: { value } }) {
+  handleChange(evt, value) {
     const { dispatcher, country, vehicleType, idx } = this.props;
-
     const vehicleInfo = vehicles[country][vehicleType][value];
     const action = actions.setVehicleSlot(vehicleInfo, value, idx);
     dispatcher(action);
@@ -17,13 +18,19 @@ export default class VehicleSelector extends Component {
     const { vehicleType, country, selectedVehicleIdx } = this.props;
 
     return (
-      <select defaultValue={ selectedVehicleIdx || 0 } onChange={this.handleChange.bind(this)}>
+      <SelectField style={{ fontSize: 15}}
+                    value={selectedVehicleIdx || 0}
+                    labelStyle={{ textAlign: 'center' }}
+                    onChange={this.handleChange.bind(this)}>
         {
           vehicles[country][vehicleType].map((x, vehicleIdx) =>
-            (<option key={vehicleIdx} value={vehicleIdx} >{x.name}</option>)
+            (<MenuItem key={vehicleIdx}
+                        style={{ fontSize: 12 }}
+                        value={vehicleIdx}
+                        primaryText={x.name}/>)
           )
         }
-      </select>
+      </SelectField>
     );
   }
 }

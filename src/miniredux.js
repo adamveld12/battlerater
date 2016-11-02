@@ -2,12 +2,12 @@ import im from 'immutable';
 
 function reduce(oldState, action, reducerFn, debug){
   if (debug)
-    console.log("****OLD STATE****", oldState);
+    console.log("****OLD STATE****\n", oldState);
 
   const newState = reducerFn(oldState, action) || {};
 
   if (debug)
-    console.log("****NEW STATE****", newState);
+    console.log("****NEW STATE****\n", newState);
 
   return newState;
 }

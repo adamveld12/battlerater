@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { actions } from './appstate.js';
+import { actions } from './AppState.js';
 
 
 const modes = ["Arcade", "Realistic", "Simulator"];

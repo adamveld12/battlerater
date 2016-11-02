@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
-import { actions } from './appstate.js';
+import { actions } from './AppState.js';
 
+import { Avatar, Chip } from 'material-ui';
+
+import { red300, red900, blue300, indigo900} from 'material-ui/styles/colors';
+
+const styles = {
+  chip: {
+    margin: 4,
+  },
+  wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+};
 class BattleRatingCalculator extends Component {
   render(){
     const { vehicleType, gameMode, vehicleSlots } = this.props;
@@ -10,11 +24,24 @@ class BattleRatingCalculator extends Component {
     ));
 
     return ratings ? (
-      <div>
-        <h2>Battle Rating: { ratings.br }</h2>
-        <h2>Tier Range: { ratings.tier }</h2>
+      <div style={styles.wrapper}>
+        <Chip backgroundColor={red300}
+              style={styles.chip} >
+            <Avatar size={32} color={red300} backgroundColor={red900}>
+              BR
+            </Avatar>
+            { ratings.br || 0 }
+        </Chip>
+
+        <Chip backgroundColor={blue300}
+              style={styles.chip} >
+            <Avatar size={32} color={blue300} backgroundColor={indigo900}>
+             T
+            </Avatar>
+            { ratings.tier }
+        </Chip>
       </div>
-    ) : (<p>Add Tanks to the lineup to calculate the Battle Rating and Tier for the lineup.</p>);
+    ) : (<p>Add crews to the lineup to calculate the overall Battle Rating and Tier.</p>);
   }
 }
 
@@ -41,6 +68,9 @@ function calculateTankBattleRating(gameMode, battleRatings) {
 
     let lowerTier = maxv.tier - 1;
     let upperTier = maxv.tier + 1;
+    upperTier = upperTier > 5 ? 5 : upperTier;
+
+
 
     let hasAnyLowBRVehicle = battleRatings.filter((x) => x.br === 1.3).length > 0;
     let hasAnyStarterVehicle = battleRatings.filter((x) => x.br === 1.0).length > 0;

@@ -14,7 +14,7 @@ export default {
 
     {'vehicle_class': 'Tank Destroyer', 'tier': 1, 'name': '75mm M3 GMC', 'br': 2.3},
     {'vehicle_class': 'Light Tank', 'tier': 2, 'name': 'M5A1 Stuart', 'br': 2.3},
-    {'vehicle_class': 'Light Tank', 'tier': 2, 'name': 'M5A1 Stuart 5th Canadian Armored Division', 'br': 2.3, 'premium': true},
+    {'vehicle_class': 'Light Tank', 'tier': 2, 'name': 'M5A1 Stuart 5th Can Armored Div', 'br': 2.3, 'premium': true},
     {'vehicle_class': 'SPAA', 'tier': 2, 'name': 'M16 MGMC', 'br': 2.3},
 
     {'vehicle_class': 'Medium Tank', 'tier': 1, 'name': 'M3 Lee', 'br': 2.7},
